@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from './components/Container';
+import Header from './components/Header';
+import Balance from './components/Balance';
+import IncomeExpenses from './components/IncomeExpenses';
+import ItemsList from './components/ItemsList';
+import Form from './components/Form';
 
-function App() {
+const App = () => {
+
+
+
+  function getExpense(item){
+    console.log(item)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+    <Header />
+    <Container>
+
+      <Balance />
+      <IncomeExpenses />
+      <ItemsList />
+      <Form onGetExpense={getExpense}/>
+      
+
+    </Container>
+   </>
   );
 }
 
