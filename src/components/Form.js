@@ -82,7 +82,7 @@ const onSubmitHandler = (e) => {
                 placeholder="Enter text..." />
         </div>
 
-        {message && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
+        {inputText && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
        
         <div className="form-control">
             <label htmlFor="amount">Enter Amount</label>
@@ -93,7 +93,7 @@ const onSubmitHandler = (e) => {
                 placeholder="Enter amount..." />
         </div>
         
-       
+        {amount && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
 
        <Button
        onClick={onSubmitHandler}

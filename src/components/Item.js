@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 const Item = ({item}) => {
   const {title, amount, id} = item;
 
-  
-
   const signIcon = amount < 0 ? 'minus' : 'plus';
 
   return (
@@ -20,6 +18,11 @@ const Item = ({item}) => {
 Item.propTypes = {
   title: PropTypes.string,
   amount: PropTypes.number,
+}
+
+Item.defaultProps = {
+  title: 'Item Title',
+  amount: 0,
 }
 
 export default Item
