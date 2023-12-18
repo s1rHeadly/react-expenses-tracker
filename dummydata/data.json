@@ -1,0 +1,39 @@
+{
+  "expenses": [
+    {
+      "id": "c9f615ed-7e9f-43ca-b149-59d2d9b07631",
+      "title": "what if",
+      "amount": -90
+    },
+    {
+      "id": "03191ce9-d371-4083-93ce-aac5211fb46a",
+      "title": "something else is mossing",
+      "amount": 90
+    },
+    {
+      "id": "0b0cf349-c7a2-4606-994b-5f609d3c4f06",
+      "title": "testing",
+      "amount": 90
+    },
+    {
+      "id": "06fa2c5e-b341-40b1-9659-bc24fe344169",
+      "title": "testin",
+      "amount": 90
+    },
+    {
+      "id": "4110bdc6-7cb0-4ebd-8798-adb747101cac",
+      "title": "asdasd asdasd asd asdasdaw",
+      "amount": 10
+    },
+    {
+      "id": "5e22c921-51f0-4809-aa5f-6a2290b0fb3d",
+      "title": "asasd asdasd",
+      "amount": -10
+    },
+    {
+      "id": "f0240db0-933a-4838-98df-5c4fab4e9ab4",
+      "title": "david said...",
+      "amount": -100
+    }
+  ]
+}

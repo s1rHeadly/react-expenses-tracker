@@ -1,23 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Button = ({type, isDisabled, children}) => {
+const Button = ({type, disabled, children, onClick}) => {
   return (
     <button
+    onClick={onClick}
     type={type || 'button'}
     className="btn form"
-    disabled={isDisabled}>
+    disabled={disabled}>
     {children}</button>
   )
 }
 
 Button.propTypes = {
-  isDisabled: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired
 }
 
 Button.defaultProps = {
-  isDisabled: true,
+  
+  disabled: true,
   type: 'button',
 
 }
