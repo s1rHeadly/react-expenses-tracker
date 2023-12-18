@@ -3,27 +3,7 @@
     {
       "id": "c9f615ed-7e9f-43ca-b149-59d2d9b07631",
       "title": "what if",
-      "amount": -90
-    },
-    {
-      "id": "03191ce9-d371-4083-93ce-aac5211fb46a",
-      "title": "something else is mossing",
-      "amount": 90
-    },
-    {
-      "id": "0b0cf349-c7a2-4606-994b-5f609d3c4f06",
-      "title": "testing",
-      "amount": 90
-    },
-    {
-      "id": "06fa2c5e-b341-40b1-9659-bc24fe344169",
-      "title": "testin",
-      "amount": 90
-    },
-    {
-      "id": "4110bdc6-7cb0-4ebd-8798-adb747101cac",
-      "title": "asdasd asdasd asd asdasdaw",
-      "amount": 10
+      "amount": -400
     },
     {
       "id": "5e22c921-51f0-4809-aa5f-6a2290b0fb3d",
@@ -31,9 +11,24 @@
       "amount": -10
     },
     {
-      "id": "f0240db0-933a-4838-98df-5c4fab4e9ab4",
-      "title": "david said...",
-      "amount": -100
+      "id": "f3cec149-b19e-49f8-ad06-00b183e89792",
+      "title": "asdasda",
+      "amount": 90
+    },
+    {
+      "id": "718f736f-0090-47d1-9548-8755c394589f",
+      "title": "asdasdasas",
+      "amount": -199
+    },
+    {
+      "id": "8c351320-2a29-42b9-86d2-309468cb9373",
+      "title": "add something to the list",
+      "amount": 100
+    },
+    {
+      "id": "f8a17f58-cbae-4957-82a4-631b089fc56d",
+      "title": "what dif something say",
+      "amount": 900
     }
   ]
 }

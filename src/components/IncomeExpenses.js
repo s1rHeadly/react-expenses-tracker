@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from 'prop-types'
 
-const IncomeExpenses = ({incomeAmount, expensesAmount}) => {
+const IncomeExpenses = ({totalIncome, totalExpenses}) => {
   return (
     <div className="inc-exp-container">
       <div>
         <h4>Income</h4>
-        <p className="money plus">${incomeAmount}</p>
+        <p className="money plus">${totalIncome}</p>
       </div>
       <div>
         <h4>Expenses</h4>
-        <p className="money minus">${expensesAmount}</p>
+        <p className="money minus">${totalExpenses}</p>
       </div>
     </div>
   );

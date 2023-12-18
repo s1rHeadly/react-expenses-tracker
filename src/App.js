@@ -20,6 +20,30 @@ const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
 
 
+
+
+// dervised state
+const totalIncome = expenses
+?.map((item) => item.amount > 0 ? item.amount : false )
+.filter((item) => item !== false)
+.reduce((total, item) => {
+  return total += item
+}, 0)
+
+
+const totalExpenses = expenses
+?.map((item) => item.amount < 0 ? item.amount : false)
+.filter((item) => item !== false)
+.reduce((total, item) => {
+  return total += item
+}, 0);
+
+const balance = totalIncome - Math.abs(totalExpenses);
+
+
+
+
+
 // functions
 
 
@@ -66,7 +90,6 @@ const addItem = async(item) => {
           setIsLoading(false)
         }
        
-        
        } catch (error) {
           setError(error)
 
@@ -89,8 +112,8 @@ const addItem = async(item) => {
     <Header />
     <Container>
 
-      <Balance />
-      <IncomeExpenses/>
+      <Balance balance={balance}/>
+      <IncomeExpenses totalIncome={totalIncome} totalExpenses={totalExpenses}/>
       {error !== null && <Error error={error} />}
       {!isLoading && error === null && <ItemsList expenses={expenses}/>}
       <Form onGetExpense={addItem}/>

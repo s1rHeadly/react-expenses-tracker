@@ -48,7 +48,10 @@ const onSubmitHandler = (e) => {
 
     e.preventDefault();
 
-    if(inputText.trim().length < 5 || amount === 0) return
+    if(inputText.trim().length < 5 || amount === 0){
+      setDisabled(true)
+      return
+    }
 
     const item = {
         id: uuidv4(),
@@ -78,7 +81,8 @@ const onSubmitHandler = (e) => {
                 type="text"
                 placeholder="Enter text..." />
         </div>
-       
+
+        {message && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
        
         <div className="form-control">
             <label htmlFor="amount">Enter Amount</label>
@@ -89,7 +93,7 @@ const onSubmitHandler = (e) => {
                 placeholder="Enter amount..." />
         </div>
         
-        {message && (<div>{message}</div>)}
+       
 
        <Button
        onClick={onSubmitHandler}
