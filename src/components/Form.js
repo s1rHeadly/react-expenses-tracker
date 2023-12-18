@@ -7,7 +7,10 @@ const Form = ({onGetExpense}) => {
   const [inputText, setInputText] = useState('');
   const [amount, setAmount] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState({
+      text: null,
+      amount: null,
+  });
 
 
 
@@ -15,13 +18,19 @@ const Form = ({onGetExpense}) => {
       setInputText(e.target.value);
 
     if (inputText.trim().length < 5) {
-        setMessage('Please enter more than 5 characters')
+        setMessage((prevState) => {
+          return {...prevState, text: 'Please enter more than 5 characters'}
+        })
     } else if(inputText.trim().length < 5 || amount === ''){
       setDisabled(true)
-      setMessage(null)
+      setMessage((prevState) => {
+        return {...prevState, text: null}
+      })
     }else {
         setDisabled(false);
-        setMessage(null);
+        setMessage((prevState) => {
+          return {...prevState, text: null}
+        })
 
     }
 }
@@ -30,13 +39,19 @@ const amountChange = (e) => {
     setAmount(e.target.value);
 
     if (amount === '' ) {
-        setMessage('Please enter an amount')
+        setMessage((prevState) => {
+          return {...prevState, amount: 'Please enter an amount'}
+        })
     } else if(amount === '' || inputText.trim().length < 5){
       setDisabled(true);
-      setMessage(null)
+      setMessage((prevState) => {
+        return {...prevState, amount: null}
+      })
     } else {
         setDisabled(false);
-        setMessage(null);
+        setMessage((prevState) => {
+          return {...prevState, amount: null}
+        })
     }
 
 }
@@ -82,7 +97,7 @@ const onSubmitHandler = (e) => {
                 placeholder="Enter text..." />
         </div>
 
-        {inputText && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
+        {inputText && (<div style={{color: "red", fontSize: '12px'}}>{message.text}</div>)}
        
         <div className="form-control">
             <label htmlFor="amount">Enter Amount</label>
@@ -93,7 +108,7 @@ const onSubmitHandler = (e) => {
                 placeholder="Enter amount..." />
         </div>
         
-        {amount && (<div style={{color: "red", fontSize: '12px'}}>{message}</div>)}
+        {amount && (<div style={{color: "red", fontSize: '12px'}}>{message.amount}</div>)}
 
        <Button
        onClick={onSubmitHandler}
