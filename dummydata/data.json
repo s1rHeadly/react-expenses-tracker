@@ -1,14 +1,14 @@
 {
   "expenses": [
     {
-      "id": "14aa2bb9-ea0c-4445-9111-e71bcbbe1b0c",
-      "title": "test item ",
-      "amount": 30
+      "id": "fcb214e4-356e-4f7c-a8d0-3475ed8d2004",
+      "title": "new item",
+      "amount": 90
     },
     {
-      "id": "467eebd3-b832-4338-abad-fa977da1f67d",
-      "title": "test item",
-      "amount": -10
+      "id": "b71307ed-3c5b-4207-af84-09a2ba2592ab",
+      "title": "testing",
+      "amount": 87
     }
   ]
 }

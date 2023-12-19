@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useReducer} from 'react';
 import { DUMMY_API } from './utils/helpers.js';
 
 // components
@@ -11,14 +11,46 @@ import Form from './components/Form';
 import Error from './components/Error.js';
 
 
-const App = () => {
 
+// reducer
+
+const initialState = {
+  expenses: [],
+  isLoading: false,
+  error: null
+}
+
+function reducerFunc(state, action){
+
+  switch (action.type) {
+    case 'all_expenses':
+        return {
+         ...state,
+         expenses:  action.payload,
+        }
+      case 'add_item':
+      return{
+        ...state,
+        expenses: [...state.expenses, action.payload]
+      }
+    default:
+     return state
+  }
+}
+
+
+
+const App = () => {
 
   //state
 
 const [expenses, setExpenses] = useState([]);
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
+
+
+const [state, dispatch] = useReducer(reducerFunc, initialState)
+console.log('render', state)
 
 
 
@@ -46,54 +78,65 @@ const balance = totalIncome - Math.abs(totalExpenses);
 
 // functions
 
-const addItem = async(item) => {
+const deleteItem = async(id) => {
+  // get the url of a specific item using its id
+  // http://localhost:4000/expenses/5e22c921-51f0-4809-aa5f-6a2290b0fb3d
 
   try {
-    // update the JSON 
-    await fetch(DUMMY_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(item) // add the item and stringfy it
+    await fetch(`${DUMMY_API}/${id}`, {
+      method: 'DELETE',
     });
 
-     // IF the add is successful,  then update state
-      setExpenses((prevState) => [...prevState, item])
+    // IF the delete is successful then update state
+    setExpenses((prevState) => prevState?.filter((item) => item.id !== id));
+
 
   } catch (error) {
-      console.log(error)
+    console.log(error)
   }
-
  
-
 }
 
 
 
-  const deleteItem = async(id) => {
-    // get the url of a specific item using its id
-    // http://localhost:4000/expenses/5e22c921-51f0-4809-aa5f-6a2290b0fb3d
+// effects
 
+useEffect(() => {
+
+  const addItem = async (item) => {
     try {
-      await fetch(`${DUMMY_API}/${id}`, {
-        method: 'DELETE',
+     
+      await fetch(DUMMY_API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item) // add the item and stringify it
       });
-
-      // IF the delete is successful then update state
-      setExpenses((prevState) => prevState?.filter((item) => item.id !== id));
   
+      // Trigger reducer to update state
+      dispatch({
+        type: 'add_item', // Ensure this matches your reducer action type
+        payload: item
+      });
   
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
-  }
+  };
+
+  addItem(); // Call addItem function
+  
+}, [item, dispatch]); 
 
 
 
 
-// effects
+
+
+
+
+
 
   useEffect(() => {
       const getData = async() => {
@@ -107,7 +150,12 @@ const addItem = async(item) => {
       
         const data = await response.json();
         if(data){
-          setExpenses(data)
+         // dipspatch state
+           dispatch({
+            type: 'all_expenses',
+            payload: data
+          })
+
           setError(null)
           setIsLoading(false)
         }
@@ -137,7 +185,7 @@ const addItem = async(item) => {
       <Balance balance={balance}/>
       <IncomeExpenses totalIncome={totalIncome} totalExpenses={totalExpenses}/>
       {error !== null && <Error error={error} />}
-      {!isLoading && error === null && <ItemsList expenses={expenses} onDeleteItem={deleteItem}/>}
+      {!isLoading && error === null && <ItemsList expenses={state.expenses} onDeleteItem={deleteItem}/>}
       <Form onGetExpense={addItem}/>
       
 
