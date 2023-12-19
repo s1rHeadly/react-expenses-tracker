@@ -15,6 +15,7 @@ const Form = ({onGetExpense}) => {
 
 
   const inputChange = (e) => {
+
       setInputText(e.target.value);
 
     if (inputText.trim().length < 5) {
@@ -55,7 +56,6 @@ const amountChange = (e) => {
     }
 
 }
-
 
 
 

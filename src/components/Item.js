@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Item = ({item}) => {
+const Item = ({item, onDeleteItem}) => {
   const {title, amount, id} = item;
 
   const signIcon = amount < 0 ? 'minus' : 'plus';
 
+
+
+
   return (
     <li className={signIcon} data-id={id}>
     {title} <span>{amount}</span>
-    <button className="delete-btn">X</button>
+    <button className="delete-btn" onClick={() => onDeleteItem(id)}>X</button>
   </li>
   )
 }

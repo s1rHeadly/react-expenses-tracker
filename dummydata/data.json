@@ -1,34 +1,14 @@
 {
   "expenses": [
     {
-      "id": "c9f615ed-7e9f-43ca-b149-59d2d9b07631",
-      "title": "what if",
-      "amount": -400
-    },
-    {
-      "id": "5e22c921-51f0-4809-aa5f-6a2290b0fb3d",
-      "title": "asasd asdasd",
-      "amount": -10
-    },
-    {
-      "id": "f3cec149-b19e-49f8-ad06-00b183e89792",
-      "title": "asdasda",
-      "amount": 90
-    },
-    {
-      "id": "718f736f-0090-47d1-9548-8755c394589f",
-      "title": "asdasdasas",
-      "amount": -199
-    },
-    {
-      "id": "8c351320-2a29-42b9-86d2-309468cb9373",
-      "title": "add something to the list",
-      "amount": 100
-    },
-    {
       "id": "f8a17f58-cbae-4957-82a4-631b089fc56d",
       "title": "what dif something say",
       "amount": 900
+    },
+    {
+      "id": "da95f21b-9db4-4ab1-86b7-ec0f643661a5",
+      "title": "something went awesome",
+      "amount": 89
     }
   ]
 }

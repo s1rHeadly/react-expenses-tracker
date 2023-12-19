@@ -15,14 +15,15 @@ const App = () => {
 
 
   //state
+
 const [expenses, setExpenses] = useState([]);
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
 
 
 
-
 // dervised state
+
 const totalIncome = expenses
 ?.map((item) => item.amount > 0 ? item.amount : false )
 .filter((item) => item !== false)
@@ -43,30 +44,51 @@ const balance = totalIncome - Math.abs(totalExpenses);
 
 
 
-
 // functions
-
 
 const addItem = async(item) => {
 
   try {
-    
+    // update the JSON 
     await fetch(DUMMY_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(item)
+      body: JSON.stringify(item) // add the item and stringfy it
     });
 
+     // IF the add is successful,  then update state
+      setExpenses((prevState) => [...prevState, item])
 
   } catch (error) {
       console.log(error)
   }
 
-  setExpenses((prevState) => [...prevState, item])
+ 
 
 }
+
+
+
+  const deleteItem = async(id) => {
+    // the url of a specific item using its id
+    // http://localhost:4000/expenses/5e22c921-51f0-4809-aa5f-6a2290b0fb3d
+
+    try {
+      await fetch(`${DUMMY_API}/${id}`, {
+        method: 'DELETE',
+      });
+
+      // IF the delete is successful then update state
+      setExpenses((prevState) => prevState.filter((item) => item.id !== id));
+  
+  
+    } catch (error) {
+      console.log(error)
+    }
+   
+  }
 
 
 
@@ -115,7 +137,7 @@ const addItem = async(item) => {
       <Balance balance={balance}/>
       <IncomeExpenses totalIncome={totalIncome} totalExpenses={totalExpenses}/>
       {error !== null && <Error error={error} />}
-      {!isLoading && error === null && <ItemsList expenses={expenses}/>}
+      {!isLoading && error === null && <ItemsList expenses={expenses} onDeleteItem={deleteItem}/>}
       <Form onGetExpense={addItem}/>
       
 
