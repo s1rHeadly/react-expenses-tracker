@@ -2,15 +2,15 @@ import React from "react";
 import Item from "./Item";
 
 const ItemsList = ({expenses, onDeleteItem}) => {
-  let content = 'Sorry there are no items yet';
+  let contentList = 'Please add an item to your list';
   if(expenses.length > 0){
-    content = expenses.map((item) => <Item item={item} key={item.id} onDeleteItem={onDeleteItem}/> )
+    contentList = expenses?.map((item) => <Item item={item} key={item.id} onDeleteItem={onDeleteItem}/> )
   }
   return (
     <>
       <h3>History</h3>
       <ul className="list">
-       {content}
+       {contentList}
       </ul>
     </>
   );

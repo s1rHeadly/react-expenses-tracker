@@ -72,7 +72,7 @@ const addItem = async(item) => {
 
 
   const deleteItem = async(id) => {
-    // the url of a specific item using its id
+    // get the url of a specific item using its id
     // http://localhost:4000/expenses/5e22c921-51f0-4809-aa5f-6a2290b0fb3d
 
     try {
@@ -81,7 +81,7 @@ const addItem = async(item) => {
       });
 
       // IF the delete is successful then update state
-      setExpenses((prevState) => prevState.filter((item) => item.id !== id));
+      setExpenses((prevState) => prevState?.filter((item) => item.id !== id));
   
   
     } catch (error) {

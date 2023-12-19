@@ -1,14 +1,14 @@
 {
   "expenses": [
     {
-      "id": "f8a17f58-cbae-4957-82a4-631b089fc56d",
-      "title": "what dif something say",
-      "amount": 900
+      "id": "14aa2bb9-ea0c-4445-9111-e71bcbbe1b0c",
+      "title": "test item ",
+      "amount": 30
     },
     {
-      "id": "da95f21b-9db4-4ab1-86b7-ec0f643661a5",
-      "title": "something went awesome",
-      "amount": 89
+      "id": "467eebd3-b832-4338-abad-fa977da1f67d",
+      "title": "test item",
+      "amount": -10
     }
   ]
 }
