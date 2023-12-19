@@ -56,7 +56,7 @@ console.log('render', state)
 
 // dervised state
 
-const totalIncome = expenses
+const totalIncome = state.expenses
 ?.map((item) => item.amount > 0 ? item.amount : false )
 .filter((item) => item !== false)
 .reduce((total, item) => {
@@ -64,7 +64,7 @@ const totalIncome = expenses
 }, 0)
 
 
-const totalExpenses = expenses
+const totalExpenses = state.expenses
 ?.map((item) => item.amount < 0 ? item.amount : false)
 .filter((item) => item !== false)
 .reduce((total, item) => {
@@ -99,13 +99,10 @@ const deleteItem = async(id) => {
 
 
 
-// effects
-
-useEffect(() => {
 
   const addItem = async (item) => {
+
     try {
-     
       await fetch(DUMMY_API, {
         method: 'POST',
         headers: {
@@ -114,9 +111,8 @@ useEffect(() => {
         body: JSON.stringify(item) // add the item and stringify it
       });
   
-      // Trigger reducer to update state
       dispatch({
-        type: 'add_item', // Ensure this matches your reducer action type
+        type: 'add_item', 
         payload: item
       });
   
@@ -124,14 +120,6 @@ useEffect(() => {
       console.log(error);
     }
   };
-
-  addItem(); // Call addItem function
-  
-}, [item, dispatch]); 
-
-
-
-
 
 
 
