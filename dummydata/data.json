@@ -1,14 +1,19 @@
 {
   "expenses": [
     {
-      "id": "fcb214e4-356e-4f7c-a8d0-3475ed8d2004",
-      "title": "new item",
+      "id": "8552690e-d1a1-4863-ae38-df9f2aeb9cc1",
+      "title": "testing the amount",
       "amount": 90
     },
     {
-      "id": "4b71289f-0b00-4bee-ba32-f11b10a79959",
-      "title": "car wash",
-      "amount": 120
+      "id": "4f3878af-b861-463f-8311-ab29badef4b4",
+      "title": "asdasdasd",
+      "amount": 45
+    },
+    {
+      "id": "668720d6-7477-48e9-a56c-2c27cdca0b06",
+      "title": "asdasdas",
+      "amount": 90
     }
   ]
 }

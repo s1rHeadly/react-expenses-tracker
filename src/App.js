@@ -23,16 +23,39 @@ const initialState = {
 function reducerFunc(state, action){
 
   switch (action.type) {
-    case 'all_expenses':
+
+      case 'loading':
+        return{
+          ...state,
+          isLoading: true,
+      }
+
+      case 'success':
         return {
          ...state,
          expenses:  action.payload,
+         isLoading: false,
+         error: null,
         }
+
       case 'add_item':
       return{
         ...state,
         expenses: [...state.expenses, action.payload]
       }
+
+      case 'delete_item':
+      return{
+        ...state,
+        expenses: state.expenses.filter((item) => item.id !== action.payload)
+      }
+
+      case 'failed':
+      return {
+        ...state,
+        error: action.payload
+      }
+
     default:
      return state
   }
@@ -44,7 +67,7 @@ const App = () => {
 
   //state
 
-const [expenses, setExpenses] = useState([]);
+// const [expenses, setExpenses] = useState([]);
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
 
@@ -87,12 +110,20 @@ const deleteItem = async(id) => {
       method: 'DELETE',
     });
 
-    // IF the delete is successful then update state
-    setExpenses((prevState) => prevState?.filter((item) => item.id !== id));
+    // IF the delete is successful then dispatch and update state
+    dispatch({
+      type: 'delete_item',
+      payload: id,
+    })
+
+    // setExpenses((prevState) => prevState?.filter((item) => item.id !== id));
 
 
   } catch (error) {
-    console.log(error)
+    dispatch({
+      type: 'failed',
+      payload: error
+     })
   }
  
 }
@@ -117,7 +148,10 @@ const deleteItem = async(id) => {
       });
   
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: 'failed',
+        payload: error
+       })
     }
   };
 
@@ -128,7 +162,10 @@ const deleteItem = async(id) => {
 
   useEffect(() => {
       const getData = async() => {
-        setIsLoading(true);
+
+        dispatch({
+          type: 'loading',
+        })
 
        try {
         const response = await fetch(DUMMY_API);
@@ -140,16 +177,16 @@ const deleteItem = async(id) => {
         if(data){
          // dipspatch state
            dispatch({
-            type: 'all_expenses',
-            payload: data
+            type: 'success',
+            payload: data,
           })
-
-          setError(null)
-          setIsLoading(false)
         }
        
        } catch (error) {
-          setError(error)
+         dispatch({
+          type: 'failed',
+          payload: error
+         })
 
        } finally{
           setIsLoading(false)
@@ -164,6 +201,24 @@ const deleteItem = async(id) => {
 
 
 
+  useEffect(() => {
+   window.addEventListener('click', function(){
+      // when the submit button is enabled AND the user presses the enter key
+      // the form  will submit
+      const button = document.querySelector('button');
+      if(button)
+      console.log(button)
+   })
+    return () => {
+     window.document.removeEventListener('click', function(e){
+    
+   })
+    };
+  }, []);
+
+
+
+
 
   return (
    <>
@@ -172,8 +227,8 @@ const deleteItem = async(id) => {
 
       <Balance balance={balance}/>
       <IncomeExpenses totalIncome={totalIncome} totalExpenses={totalExpenses}/>
-      {error !== null && <Error error={error} />}
-      {!isLoading && error === null && <ItemsList expenses={state.expenses} onDeleteItem={deleteItem}/>}
+      {state.error !== null && <Error error={error} />}
+      {!state.isLoading && state.error === null && <ItemsList expenses={state.expenses} onDeleteItem={deleteItem}/>}
       <Form onGetExpense={addItem}/>
       
 
