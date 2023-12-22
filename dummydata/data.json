@@ -1,18 +1,18 @@
 {
   "expenses": [
     {
-      "id": "8552690e-d1a1-4863-ae38-df9f2aeb9cc1",
-      "title": "testing the amount",
+      "id": "668720d6-7477-48e9-a56c-2c27cdca0b06",
+      "title": "asdasdas",
       "amount": 90
     },
     {
-      "id": "4f3878af-b861-463f-8311-ab29badef4b4",
-      "title": "asdasdasd",
-      "amount": 45
+      "id": "ab7739fa-2e38-439a-b045-dcf3f1cb35fa",
+      "title": "something else",
+      "amount": 90
     },
     {
-      "id": "668720d6-7477-48e9-a56c-2c27cdca0b06",
-      "title": "asdasdas",
+      "id": "d73a7091-923c-44e4-990c-75fe0969367e",
+      "title": "some thinasdasd",
       "amount": 90
     }
   ]

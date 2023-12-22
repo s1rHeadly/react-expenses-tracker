@@ -30,6 +30,13 @@ function reducerFunc(state, action){
           isLoading: true,
       }
 
+
+      case 'loaded':
+      return{
+          ...state,
+          isLoading: false
+      }
+
       case 'success':
         return {
          ...state,
@@ -41,7 +48,9 @@ function reducerFunc(state, action){
       case 'add_item':
       return{
         ...state,
-        expenses: [...state.expenses, action.payload]
+        expenses: [...state.expenses, action.payload],
+        isLoading: false,
+        error: null,
       }
 
       case 'delete_item':
@@ -68,8 +77,8 @@ const App = () => {
   //state
 
 // const [expenses, setExpenses] = useState([]);
-const [isLoading, setIsLoading] = useState(false);
-const [error, setError] = useState(null);
+// const [isLoading, setIsLoading] = useState(false);
+// const [error, setError] = useState(null);
 
 
 const [state, dispatch] = useReducer(reducerFunc, initialState)
@@ -161,6 +170,7 @@ const deleteItem = async(id) => {
 
 
   useEffect(() => {
+
       const getData = async() => {
 
         dispatch({
@@ -189,7 +199,10 @@ const deleteItem = async(id) => {
          })
 
        } finally{
-          setIsLoading(false)
+        //   setIsLoading(false)
+        dispatch({
+          type: 'loaded',
+        })
        }
         
       }
@@ -227,7 +240,7 @@ const deleteItem = async(id) => {
 
       <Balance balance={balance}/>
       <IncomeExpenses totalIncome={totalIncome} totalExpenses={totalExpenses}/>
-      {state.error !== null && <Error error={error} />}
+      {state.error !== null && <Error error={state.error} />}
       {!state.isLoading && state.error === null && <ItemsList expenses={state.expenses} onDeleteItem={deleteItem}/>}
       <Form onGetExpense={addItem}/>
       
